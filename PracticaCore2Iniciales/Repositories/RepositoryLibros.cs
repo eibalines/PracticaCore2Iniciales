@@ -78,9 +78,6 @@ namespace PracticaCore2Iniciales.Repositories
             return consulta.FirstOrDefault();
         }
 
-
-        private SqlDataAdapter addept;
-        private String CadenaConexion;
         private SqlConnection cn;
         private SqlCommand com;
 

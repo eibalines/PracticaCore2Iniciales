@@ -44,38 +44,32 @@ namespace PracticaCore2Iniciales.Controllers
             return View(libros);
         }
 
-        public IActionResult LibrosAlmacenados(int? idlibro)
+        public IActionResult CarritoLibros(int? idlibro)
         {
-            List<int> lstIdLibros =
-            HttpContext.Session.GetObject<List<int>>("IdLibro");
-            if (lstIdLibros == null)
+            if (idlibro != null)
             {
-                ViewData["MENSAJE"] =
-                "No existen libros en el carrito";
-                return View();
-            }
-            else
-            {
-                if (idlibro != null)
+                List<int> lstLibrosId;
+                if (HttpContext.Session.GetString("Idlibro") == null)
                 {
-                    lstIdLibros.Remove(idlibro.Value);
-                    if (lstIdLibros.Count == 0)
-                    {
-
-                        HttpContext.Session.Remove("IdLibro");
-                    }
-                    else
-                    {
-                        HttpContext.Session.SetObject("IdLibro", lstIdLibros);
-                    }
+                   
+                    lstLibrosId = new List<int>();
                 }
-
-                List<Libro> libros =
-                           this.repo.GetLibroSession(lstIdLibros);
-                return View(libros);
+                else
+                {
+                    
+                    lstLibrosId =
+             HttpContext.Session.GetObject<List<int>>("Idlibro");
+                }
+                
+                lstLibrosId.Add(idlibro.Value);
+           
+                HttpContext.Session.SetObject("Idlibro", lstLibrosId);
             }
-
+            return View(this.repo.GetLibros());
 
         }
+
+
     }
-}
+    }
+

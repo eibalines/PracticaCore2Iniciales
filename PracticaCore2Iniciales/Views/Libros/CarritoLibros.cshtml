@@ -8,8 +8,14 @@ Context.Session.GetObject<List<int>>("Idlibro");
 
 @if (Context.Session.GetObject<List<int>>("Idlibro") != null)
 {
+    foreach (Libro libro in Model)
+    {
+
+   <h1>@libro.Titulo</h1>
+    }
+
 <a class="btn-link"
-asp-controller="Manage"
+asp-controller="Usuarios"
 asp-action="FinalizarCompra">
 Finalizar compra
  </a>

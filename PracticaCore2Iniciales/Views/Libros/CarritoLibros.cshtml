@@ -2,11 +2,11 @@
 
 @{
     List<int> listaSession =
-Context.Session.GetObject<List<int>>("IdLibro");
+Context.Session.GetObject<List<int>>("Idlibro");
 }
 
 
-@if (Context.Session.GetObject<List<int>>("IdLibro") != null)
+@if (Context.Session.GetObject<List<int>>("Idlibro") != null)
 {
 <a class="btn-link"
 asp-controller="Manage"
@@ -16,5 +16,5 @@ Finalizar compra
   }
  else
  {
-                    <h1>No hay nada en el carrito</h1>
+    <h1>No hay nada en el carrito</h1>
   }

@@ -1,0 +1,37 @@
+﻿
+@if (Context.Session.GetString("IdLibro") != null)
+{
+
+    <li>
+       
+        <span style="color:red">Libros: @Context.Session.GetString("Idlibro").Count()</span>
+    </li>
+}
+@if (Context.User.Identity.IsAuthenticated == false)
+{
+
+<li class="nav-item">
+    <a class="nav-link mx-2" asp-controller="Usuarios" asp-action="Index">
+        <i class="fas fa-heart pe-2"></i>Login
+    </a>
+</li>
+}
+
+
+else
+{
+<li>
+    Hola, @Context.User.Identity.Name
+    <img style="width:35px; height:35px" src="~/Images/@Context.User.FindFirst("Foto")" />
+</li>
+<li class="nav-item">
+    <a class="nav-link mx-2" asp-controller="Usuarios" asp-action="Perfil">
+        <i class="fas fa-heart pe-2"></i>Perfil
+    </a>
+</li>
+<li class="nav-item">
+    <a id="LogoLogout" class="nav-link mx-2" asp-controller="Manage" asp-action="LogOut">
+        LogOut
+    </a>
+</li>
+}
